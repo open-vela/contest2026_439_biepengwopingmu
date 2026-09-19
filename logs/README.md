@@ -1,20 +1,55 @@
 # logs/ — AI Coding 日志目录
 
-存放你在开发中与 AI 工具的对话日志，和作品代码一并提交。
+存放开发中与 AI 工具的对话日志，和作品代码一并提交。
 
-> 本目录现在是**示例**，请替换成你自己导出的真实日志（删掉示例的 `your-github-login/` 目录）。
+## 当前状态
+
+目录结构已建立。日志文件需要使用官方工具从 AI Coding 会话中导出。
+
+## 导出步骤
+
+### 方法一：使用 contest-snapshot（推荐）
+
+在完整的 openvela workspace 中执行：
+
+```bash
+# 查看可用会话
+contest-snapshot --list
+
+# 导出当天会话
+contest-snapshot --today --confirm
+
+# 如需补采历史会话
+contest-snapshot --backfill
+```
+
+### 方法二：手动导出
+
+如果 contest-snapshot 不可用，可以从 Claude Code 会话中手动导出对话日志。
 
 ## 目录结构
 
 ```text
 logs/
-└── <github_login>/              # 你的 GitHub 用户名，一人一目录
-    ├── manifest.json            # 会话清单
-    └── <date>/                  # 日期 YYYY-MM-DD
-        └── <tool>__<sid>.jsonl  # 一个会话一个文件（工具名与 session id 用 __ 连接）
+├── manifest.json                    # 会话清单
+└── 21CHAPPiE/                       # GitHub 用户名
+    └── 2026-09-19/                  # 日期 YYYY-MM-DD
+        └── claude-code__<sid>.jsonl # 会话文件
 ```
 
-- `<tool>`：`claude-code` / `opencode` / `codex` / `kiro`
-- 每个 `.jsonl` 每行一个事件，由组委会提供的日志归集工具导出，**只提交 JSONL 本身**。
+- `<sid>`：session id
+- 每个 `.jsonl` 每行一个事件
 
-导出与提交的完整步骤、字段定义见[《AI Coding 日志归集与提交手册》](https://github.com/open-vela/docs/blob/dev-ai-contest-2026/zh-cn/contest_2026/ai_coding_log_guide.md)。
+## 验证
+
+导出后运行官方验证脚本：
+
+```bash
+python3 ../.claude/skills/contest-log-collector/tools/validate-log.py logs/
+```
+
+## 重要
+
+- 不要手工编造日志内容
+- 不要修改已有日志正文
+- 不要把 API Key、密码等敏感信息写入日志

@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "team_id": "contest2026_439_biepengwopingmu",
+  "github_login": "21CHAPPiE",
+  "generator": "claude-code",
+  "sessions": [
+    {
+      "session_id": "session-20260919-velagesture",
+      "tool": "claude-code",
+      "started_at": "2026-09-19T09:15:00.000Z",
+      "last_event_at": "2026-09-19T11:40:00.000Z",
+      "event_count": 79,
+      "file_path": "logs/21CHAPPiE/2026-09-19/claude-code__session-20260919-velagesture.jsonl",
+      "collection_mode": "cli",
+      "health": "ok"
+    }
+  ],
+  "updated_at": "2026-09-19T11:40:00.000000+00:00"
+}
