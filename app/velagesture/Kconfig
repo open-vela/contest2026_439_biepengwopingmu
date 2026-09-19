@@ -1,0 +1,49 @@
+# VelaGesture — Multimodal Gesture Interaction Terminal
+
+config VELAGESTURE
+	bool "VelaGesture multimodal gesture interaction terminal"
+	default n
+	---help---
+		Enable the VelaGesture application.  This is a multimodal
+		gesture interaction terminal for the ESP32-P4 platform,
+		built on openvela.  It provides gesture recognition, AI
+		agent integration, WebSocket communication with the Guxian
+		business system, and audio I/O.
+
+if VELAGESTURE
+
+config VELAGESTURE_WS_HOST
+	string "Guxian WebSocket server host"
+	default "192.168.1.100"
+	---help---
+		Hostname or IP address of the Guxian business system
+		WebSocket server.
+
+config VELAGESTURE_WS_PORT
+	int "Guxian WebSocket server port"
+	default 8443
+	---help---
+		Port number for the Guxian WebSocket server.
+
+config VELAGESTURE_AUDIO
+	bool "Enable audio capture and playback"
+	default n
+	---help---
+		Enable half-duplex audio I/O for voice interaction.
+		Requires a working audio codec driver on the target board.
+
+config VELAGESTURE_USE_ESPDL
+	bool "Use ESP-DL inference backend"
+	default n
+	depends on ESPRESSIF
+	---help---
+		Use the ESP-DL runtime for gesture recognition inference.
+		Requires the hand-gesture model to be present on the device.
+
+config VELAGESTURE_USE_TFLITE
+	bool "Use TF-Lite Micro inference backend"
+	default n
+	---help---
+		Use TensorFlow Lite Micro for gesture recognition inference.
+
+endif # VELAGESTURE
